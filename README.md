@@ -6,9 +6,9 @@ Welcome to the Seafood-Wave App! This front-end application is designed for demo
 
 1. **Ordering without Login:** Users can browse the menu and place food orders without the need to create an account or log in.
 
-2. **Order Tracking:** Users can check the status of their orders using a unique order ID. This feature provides real-time updates on the preparation and delivery status.
+2. **Order Tracking:** Users can check the status of their orders using a unique order ID.
 
-3. **Shopping Cart:** Add your favorite dishes to the cart and review your selection before placing an order.
+3. **Food Cart:** Add your dishes to the cart and review your selection before placing an order.
 
 4. **Geocoding Integration:** The app integrates with geocoding services to enhance the user experience. Location-based features ensure accurate delivery and provide users with relevant information based on their geographical context.
 
