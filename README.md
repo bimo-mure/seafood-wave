@@ -1,6 +1,6 @@
-# Restaurant Demo App 🦀
+# Seafood-Wave 🦀
 
-Welcome to the Restaurant Demo App! This front-end application is designed for demonstration purposes, allowing users to explore the functionality of a simplified restaurant ordering system without the need for a login.
+Welcome to the Seafood-Wave App! This front-end application is designed for demonstration purposes, allowing users to explore the functionality of a simplified restaurant ordering system without the need for a login.
 
 ## Features ✨
 
@@ -19,7 +19,7 @@ Follow these steps to set up the Restaurant Demo App locally:
 ```bash
 # Clone the repository
 git clone https://github.com/bimo-mure/seafood-wave.git
-cd restaurant-demo-app
+cd seafood-wave
 
 # Install dependencies
 npm install
