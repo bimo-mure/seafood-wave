@@ -1,8 +1,8 @@
-# Restaurant Demo App
+# Restaurant Demo App 🦀
 
 Welcome to the Restaurant Demo App! This front-end application is designed for demonstration purposes, allowing users to explore the functionality of a simplified restaurant ordering system without the need for a login.
 
-## Features
+## Features ✨
 
 1. **Ordering without Login:** Users can browse the menu and place food orders without the need to create an account or log in.
 
@@ -12,7 +12,7 @@ Welcome to the Restaurant Demo App! This front-end application is designed for d
 
 4. **Geocoding Integration:** The app integrates with geocoding services to enhance the user experience. Location-based features ensure accurate delivery and provide users with relevant information based on their geographical context.
 
-## Getting Started
+## Getting Started 🌱
 
 Follow these steps to set up the Restaurant Demo App locally:
 
