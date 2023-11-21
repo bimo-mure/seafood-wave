@@ -14,7 +14,7 @@ Welcome to the Seafood-Wave App! This front-end application is designed for demo
 
 ## Getting Started 🌱
 
-Follow these steps to set up the Restaurant Demo App locally:
+Follow these steps to set up the seafood-wave Demo App locally:
 
 ```bash
 # Clone the repository
@@ -24,6 +24,6 @@ cd seafood-wave
 # Install dependencies
 npm install
 
-# Start the app
-npm start
+# Start the app locally
+npm run dev
 ```
