@@ -6,11 +6,13 @@ function Menu() {
   const menu = useLoaderData();
 
   return (
-    <ul className="divide-y divide-stone-200 px-2">
-      {menu.map((menu) => (
-        <MenuItem menu={menu} key={menu.menuId} />
-      ))}
-    </ul>
+    <div className="mx-auto max-w-3xl">
+      <ul className="divide-y divide-stone-200 px-2">
+        {menu.map((menu) => (
+          <MenuItem menu={menu} key={menu.menuId} />
+        ))}
+      </ul>
+    </div>
   );
 }
 

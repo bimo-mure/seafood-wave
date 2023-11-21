@@ -18,11 +18,7 @@ function CreateUser() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <p className="mb-4 text-sm text-stone-600 md:text-base">
-        👋 Welcome! Please start by telling us your name:
-      </p>
-
+    <form onSubmit={handleSubmit} className="flex flex-row gap-4">
       <input
         type="text"
         placeholder="Your full name"
