@@ -9,7 +9,25 @@ export async function getMenu() {
       },
     });
 
-    // fetch won't throw error on 400 errors (e.g. when URL is wrong), so we need to do it manually. This will then go into the catch block, where the message is set
+    if (!res.ok) throw Error();
+
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.log(err.message);
+    throw Error('Failed getting menu');
+  }
+}
+
+export async function getMenuByCategory(category) {
+  try {
+    const res = await fetch(`${API_URL}/menu/category/${category}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
     if (!res.ok) throw Error();
 
     const data = await res.json();

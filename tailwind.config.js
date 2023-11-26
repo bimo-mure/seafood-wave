@@ -4,7 +4,7 @@ export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     fontFamily: {
-      sans: 'Roboto Mono, monospace',
+      sans: 'Rubik, monospace',
     },
 
     extend: {
@@ -16,5 +16,5 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/forms')],
 };

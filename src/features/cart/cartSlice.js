@@ -28,6 +28,10 @@ const cartSlice = createSlice({
 
       if (item.quantity === 0) cartSlice.caseReducers.deleteItem(state, action);
     },
+    addchoiseOfDhises(state, action) {
+      const item = state.cart.find((item) => item.menuId === action.payload.Id);
+      item.choiseOfDhises = action.payload.value;
+    },
     clearCart(state) {
       state.cart = [];
     },
@@ -39,6 +43,7 @@ export const {
   deleteItem,
   increaseItemQuantity,
   decreaseItemQuantity,
+  addchoiseOfDhises,
   clearCart,
 } = cartSlice.actions;
 
@@ -54,5 +59,8 @@ export const getTotalCartPrice = (state) =>
 
 export const getCurrentQuantityById = (id) => (state) =>
   state.cart.cart.find((item) => item.menuId === id)?.quantity ?? 0;
+
+export const getCurrentMenuById = (id) => (state) =>
+  state.cart.cart.find((item) => item.menuId === id)?.choiseOfDhises ?? '';
 
 // 'reselect'
