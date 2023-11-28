@@ -31,6 +31,7 @@ const cartSlice = createSlice({
     changeChoiseOfDhises(state, action) {
       const item = state.cart.find((item) => item.menuId === action.payload.id);
       item.choiseOfDhises = action.payload.choiseOfDhises;
+      item.note = action.payload.note;
       console.log(action.payload);
     },
     clearCart(state) {
@@ -47,6 +48,7 @@ export const {
   addchoiseOfDhises,
   clearCart,
   changeChoiseOfDhises,
+  changeItemNotes,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;
@@ -64,5 +66,8 @@ export const getCurrentQuantityById = (id) => (state) =>
 
 export const getCurrentMenuById = (id) => (state) =>
   state.cart.cart.find((item) => item.menuId === id)?.choiseOfDhises ?? '';
+
+export const getCurrentNoteById = (id) => (state) =>
+  state.cart.cart.find((item) => item.menuId === id)?.note ?? '';
 
 // 'reselect'

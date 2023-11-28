@@ -8,6 +8,7 @@ import {
   getCurrentMenuById,
   getCurrentQuantityById,
   changeChoiseOfDhises,
+  getCurrentNoteById,
 } from '../cart/cartSlice';
 import ChoiseOfDhises from '../cart/ChoiseOfDhises';
 import { useEffect, useRef, useState } from 'react';
@@ -26,6 +27,7 @@ function MenuItem({ menu }) {
       menuId: menuId,
       menuName: name,
       choiseOfDhises: choiseOfDhises[selectedOption],
+      note: itemNote,
       quantity: 1,
       unitPrice,
       totalPrice: unitPrice * 1,
@@ -35,6 +37,7 @@ function MenuItem({ menu }) {
   const isMounted = useRef(false);
 
   const [selectedOption, setSelectedOption] = useState(0);
+  const [itemNote, setItemNote] = useState('');
 
   useEffect(() => {
     if (isMounted.current) {
@@ -43,16 +46,21 @@ function MenuItem({ menu }) {
           changeChoiseOfDhises({
             id: menuId,
             choiseOfDhises: choiseOfDhises[selectedOption],
+            note: itemNote,
           })
         );
       }
     } else {
       isMounted.current = true;
     }
-  }, [selectedOption]);
+  }, [choiseOfDhises, dispatch, isInCart, menuId, selectedOption, itemNote]);
 
-  function handleClick(e) {
+  function handleChangeOption(e) {
     setSelectedOption(e);
+  }
+
+  function handleNote(e) {
+    setItemNote(e);
   }
 
   return (
@@ -65,21 +73,32 @@ function MenuItem({ menu }) {
       <div className="flex grow flex-col pt-0.5">
         <div className="grid grid-cols-2"></div>
         <p className="mb-3 text-4xl font-medium">{name}</p>
-        <p className="text-lg font-medium">Choise of Dhises:</p>
+        <p className="mb-2 text-lg font-medium">Choise of Dhises:</p>
 
-        {choiseOfDhises.map((item, index) => (
-          <div>
+        <div className="flex flex-wrap gap-2">
+          {choiseOfDhises.map((item, index) => (
             <ChoiseOfDhises
               num={index}
               menuId={menuId}
-              onChange={handleClick}
-              key={index}
+              onChange={handleChangeOption}
+              key={index + menuId}
               currentDhises={currentDhises}
             >
               {item}
             </ChoiseOfDhises>
-          </div>
-        ))}
+          ))}
+        </div>
+
+        <div className="my-2">
+          <textarea
+            id="message"
+            rows="2"
+            onMouseLeave={(e) => handleNote(e.target.value)}
+            defaultValue={getCurrentNoteById}
+            class="block w-full rounded-lg border border-gray-300 bg-gray-100 p-2.5 text-sm text-gray-800 focus:border-red-500 focus:ring-red-500 "
+            placeholder="Write your note here..."
+          />
+        </div>
 
         <div className="mt-auto flex items-center justify-between">
           {!soldOut ? (

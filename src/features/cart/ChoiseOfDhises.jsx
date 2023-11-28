@@ -4,11 +4,15 @@ function ChoiseOfDhises({ num, menuId, onChange, children, currentDhises }) {
       <input
         type="radio"
         name={menuId}
+        id={menuId + num}
         defaultChecked={currentDhises === children}
         onChange={() => onChange(num)}
-        className="h-4 w-4 border-gray-300 bg-gray-100 text-red-600 focus:ring-2 focus:ring-red-500"
+        className="peer hidden"
       />
-      <label htmlFor={menuId} className="ms-2 text-base text-stone-600">
+      <label
+        htmlFor={menuId + num}
+        className="inline-flex cursor-pointer rounded-2xl border border-gray-200 bg-stone-100 px-2 text-gray-600 hover:bg-red-200 hover:text-gray-600 peer-checked:bg-red-400 peer-checked:font-normal peer-checked:text-stone-700"
+      >
         {children}
       </label>
     </div>
