@@ -7,15 +7,17 @@ import {
   addItem,
   getCurrentMenuById,
   getCurrentQuantityById,
+  changeChoiseOfDhises,
 } from '../cart/cartSlice';
-import Radio from '../cart/Radio';
+import ChoiseOfDhises from '../cart/ChoiseOfDhises';
+import { useEffect, useRef, useState } from 'react';
 
 function MenuItem({ menu }) {
   const dispatch = useDispatch();
 
   const { menuId, name, unitPrice, choiseOfDhises, soldOut, imageUrl } = menu;
 
-  const currentMenu = useSelector(getCurrentMenuById(menuId));
+  const currentDhises = useSelector(getCurrentMenuById(menuId));
   const currentQuantity = useSelector(getCurrentQuantityById(menuId));
   const isInCart = currentQuantity > 0;
 
@@ -23,12 +25,34 @@ function MenuItem({ menu }) {
     const newItem = {
       menuId: menuId,
       menuName: name,
-      choiseOfDhises,
+      choiseOfDhises: choiseOfDhises[selectedOption],
       quantity: 1,
       unitPrice,
       totalPrice: unitPrice * 1,
     };
     dispatch(addItem(newItem));
+  }
+  const isMounted = useRef(false);
+
+  const [selectedOption, setSelectedOption] = useState(0);
+
+  useEffect(() => {
+    if (isMounted.current) {
+      if (isInCart) {
+        dispatch(
+          changeChoiseOfDhises({
+            id: menuId,
+            choiseOfDhises: choiseOfDhises[selectedOption],
+          })
+        );
+      }
+    } else {
+      isMounted.current = true;
+    }
+  }, [selectedOption]);
+
+  function handleClick(e) {
+    setSelectedOption(e);
   }
 
   return (
@@ -43,27 +67,17 @@ function MenuItem({ menu }) {
         <p className="mb-3 text-4xl font-medium">{name}</p>
         <p className="text-lg font-medium">Choise of Dhises:</p>
 
-        {choiseOfDhises.map((item) => (
+        {choiseOfDhises.map((item, index) => (
           <div>
-            {isInCart ? (
-              <Radio
-                menuId={menuId}
-                key={menuId}
-                disabled={false}
-                checked={currentMenu === item}
-              >
-                {item}
-              </Radio>
-            ) : (
-              <Radio
-                menuId={menuId}
-                key={menuId}
-                disabled={true}
-                checked={false}
-              >
-                {item}
-              </Radio>
-            )}
+            <ChoiseOfDhises
+              num={index}
+              menuId={menuId}
+              onChange={handleClick}
+              key={index}
+              currentDhises={currentDhises}
+            >
+              {item}
+            </ChoiseOfDhises>
           </div>
         ))}
 
