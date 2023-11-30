@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import SearchOrder from '../features/order/SearchOrder';
-import Username from '../features/user/Username';
 import Cart from './HeaderCart';
 
 function Header() {
@@ -12,7 +11,6 @@ function Header() {
 
       <div className="flex flex-row items-center gap-4">
         <SearchOrder />
-        <Username />
         <Cart />
       </div>
     </header>
