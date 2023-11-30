@@ -14,11 +14,11 @@ function FeaturedMenu() {
 
       <div className="mb-11 grid grid-cols-3 content-center gap-8">
         <Link className="text-center" to="menu/crab">
-          <div className="overflow-hidden [&>img]:hover:scale-110 [&>img]:hover:opacity-70">
+          <div className="overflow-hidden rounded-lg [&>img]:hover:scale-110 [&>img]:hover:opacity-70">
             <img
               src="https://yhwislyjvtigzmagbzmn.supabase.co/storage/v1/object/public/menu/King%20Crab.jpg"
               alt="King Crab"
-              className="block w-full opacity-100 transition-all duration-500"
+              className="block w-full rounded-lg opacity-100 transition-all duration-500"
             />
           </div>
           <div className="text-stone-70  bg-stone-50 text-4xl font-semibold uppercase">
@@ -26,11 +26,11 @@ function FeaturedMenu() {
           </div>
         </Link>
         <Link className="text-center" to="menu/clam">
-          <div className="overflow-hidden [&>img]:hover:scale-110 [&>img]:hover:opacity-70">
+          <div className="overflow-hidden rounded-lg [&>img]:hover:scale-110 [&>img]:hover:opacity-70">
             <img
               src="https://yhwislyjvtigzmagbzmn.supabase.co/storage/v1/object/public/menu/Red%20Clams.jpg"
               alt="Red Clam"
-              className="block w-full opacity-100 transition-all duration-500"
+              className="block w-full rounded-lg opacity-100 transition-all duration-500"
             />
           </div>
           <div className="text-stone-70  bg-stone-50 text-4xl font-semibold uppercase">
@@ -38,11 +38,11 @@ function FeaturedMenu() {
           </div>
         </Link>
         <Link className="text-center" to="menu/shrimp">
-          <div className="overflow-hidden [&>img]:hover:scale-110 [&>img]:hover:opacity-70">
+          <div className="overflow-hidden rounded-lg [&>img]:hover:scale-110 [&>img]:hover:opacity-70">
             <img
               src="https://yhwislyjvtigzmagbzmn.supabase.co/storage/v1/object/public/menu/Giant%20Freshwater%20Shrimp.jpg"
               alt="Giant Freshwater Shrimp"
-              className="block w-full opacity-100 transition-all duration-500"
+              className="block w-full rounded-lg opacity-100 transition-all duration-500"
             />
           </div>
           <div className="text-stone-70  bg-stone-50 text-4xl font-semibold uppercase">
@@ -50,11 +50,11 @@ function FeaturedMenu() {
           </div>
         </Link>
         <Link className="text-center" to="menu/fish">
-          <div className="overflow-hidden [&>img]:hover:scale-110 [&>img]:hover:opacity-70">
+          <div className="overflow-hidden rounded-lg [&>img]:hover:scale-110 [&>img]:hover:opacity-70">
             <img
               src="https://yhwislyjvtigzmagbzmn.supabase.co/storage/v1/object/public/menu/Red%20Snapper.jpg"
               alt="Red Snapper"
-              className="block w-full opacity-100 transition-all duration-500"
+              className="block w-full rounded-lg opacity-100 transition-all duration-500"
             />
           </div>
           <div className="text-stone-70  bg-stone-50 text-4xl font-semibold uppercase">
@@ -62,11 +62,11 @@ function FeaturedMenu() {
           </div>
         </Link>
         <Link className="text-center" to="menu/squid">
-          <div className="overflow-hidden [&>img]:hover:scale-110 [&>img]:hover:opacity-70">
+          <div className="overflow-hidden rounded-lg [&>img]:hover:scale-110 [&>img]:hover:opacity-70">
             <img
               src="https://yhwislyjvtigzmagbzmn.supabase.co/storage/v1/object/public/menu/Squid%20Padang%20Sauce.jpg"
               alt="Squid"
-              className="block w-full opacity-100 transition-all duration-500"
+              className="block w-full rounded-lg opacity-100 transition-all duration-500"
             />
           </div>
           <div className="text-stone-70  bg-stone-50 text-4xl font-semibold uppercase">

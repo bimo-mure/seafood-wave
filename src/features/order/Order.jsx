@@ -34,7 +34,7 @@ function Order() {
 
         <div className="space-x-2">
           <span className="rounded-full bg-green-500 px-3 py-1 text-sm font-semibold uppercase tracking-wide text-green-50">
-            {status}
+            {deliveryIn >= 0 ? status : 'Served'}
           </span>
         </div>
       </div>
@@ -43,30 +43,21 @@ function Order() {
         <p className="font-medium">
           {deliveryIn >= 0
             ? `Only ${calcMinutesLeft(estimatedDelivery)} minutes left 😃`
-            : 'Order should have arrived'}
+            : 'Your food should have been served, Bon appetite! 😋'}
         </p>
         <p className="text-xs text-stone-500">
-          (Estimated delivery: {formatDate(estimatedDelivery)})
+          (Estimated: {formatDate(estimatedDelivery)})
         </p>
       </div>
 
       <ul className="dive-stone-200 divide-y border-b border-t">
         {cart.map((item) => (
-          <OrderItem
-            item={item}
-            key={item.menuId}
-            choisesOfDhises={item.choisesOfDhises}
-          />
+          <OrderItem item={item} key={item.menuId} />
         ))}
       </ul>
 
-      <div className="space-y-2 bg-stone-200 px-6 py-5">
-        {/* <p className="text-sm font-medium text-stone-600">
-          Price Food: {formatCurrency(orderPrice)}
-        </p> */}
-        <p className="font-bold">
-          To pay on delivery: {formatCurrency(orderPrice)}
-        </p>
+      <div className="space-y-2 bg-stone-200 px-6 py-5 text-end">
+        <p className="font-bold">Total : {formatCurrency(orderPrice)}</p>
       </div>
     </div>
   );

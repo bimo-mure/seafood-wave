@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import SearchOrder from '../features/order/SearchOrder';
 import Username from '../features/user/Username';
+import Cart from './HeaderCart';
 
 function Header() {
   return (
@@ -9,8 +10,11 @@ function Header() {
         <img src="/logo.png" alt="seafood wave logo" className="w-1/4" />
       </Link>
 
-      <SearchOrder />
-      <Username />
+      <div className="flex flex-row items-center gap-4">
+        <SearchOrder />
+        <Username />
+        <Cart />
+      </div>
     </header>
   );
 }

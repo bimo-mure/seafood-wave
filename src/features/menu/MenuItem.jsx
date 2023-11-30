@@ -7,18 +7,19 @@ import {
   addItem,
   getCurrentMenuById,
   getCurrentQuantityById,
-  changeChoiseOfDhises,
+  changeChooseOfDishes,
   getCurrentNoteById,
 } from '../cart/cartSlice';
-import ChoiseOfDhises from '../cart/ChoiseOfDhises';
+import ChooseOfDishes from '../cart/ChooseOfDishes';
 import { useEffect, useRef, useState } from 'react';
 
 function MenuItem({ menu }) {
   const dispatch = useDispatch();
 
-  const { menuId, name, unitPrice, choiseOfDhises, soldOut, imageUrl } = menu;
+  const { menuId, name, unitPrice, chooseOfDishes, soldOut, imageUrl } = menu;
 
   const currentDhises = useSelector(getCurrentMenuById(menuId));
+  const currentNotes = useSelector(getCurrentNoteById(menuId));
   const currentQuantity = useSelector(getCurrentQuantityById(menuId));
   const isInCart = currentQuantity > 0;
 
@@ -26,7 +27,7 @@ function MenuItem({ menu }) {
     const newItem = {
       menuId: menuId,
       menuName: name,
-      choiseOfDhises: choiseOfDhises[selectedOption],
+      chooseOfDishes: chooseOfDishes[selectedOption],
       note: itemNote,
       quantity: 1,
       unitPrice,
@@ -43,9 +44,9 @@ function MenuItem({ menu }) {
     if (isMounted.current) {
       if (isInCart) {
         dispatch(
-          changeChoiseOfDhises({
+          changeChooseOfDishes({
             id: menuId,
-            choiseOfDhises: choiseOfDhises[selectedOption],
+            chooseOfDishes: chooseOfDishes[selectedOption],
             note: itemNote,
           })
         );
@@ -53,7 +54,7 @@ function MenuItem({ menu }) {
     } else {
       isMounted.current = true;
     }
-  }, [choiseOfDhises, dispatch, isInCart, menuId, selectedOption, itemNote]);
+  }, [chooseOfDishes, dispatch, isInCart, menuId, selectedOption, itemNote]);
 
   function handleChangeOption(e) {
     setSelectedOption(e);
@@ -68,24 +69,25 @@ function MenuItem({ menu }) {
       <img
         src={imageUrl}
         alt={name}
-        className={`h-64 ${soldOut ? 'opacity-70 grayscale' : ''}`}
+        className={`h-64 rounded-lg ${soldOut ? 'opacity-70 grayscale' : ''}`}
       />
       <div className="flex grow flex-col pt-0.5">
         <div className="grid grid-cols-2"></div>
         <p className="mb-3 text-4xl font-medium">{name}</p>
-        <p className="mb-2 text-lg font-medium">Choise of Dhises:</p>
+        <p className="mb-2 text-lg font-medium">Choose of Dhises:</p>
 
         <div className="flex flex-wrap gap-2">
-          {choiseOfDhises.map((item, index) => (
-            <ChoiseOfDhises
+          {chooseOfDishes.map((item, index) => (
+            <ChooseOfDishes
               num={index}
               menuId={menuId}
               onChange={handleChangeOption}
               key={index + menuId}
               currentDhises={currentDhises}
+              disabled={soldOut}
             >
               {item}
-            </ChoiseOfDhises>
+            </ChooseOfDishes>
           ))}
         </div>
 
@@ -94,15 +96,18 @@ function MenuItem({ menu }) {
             id="message"
             rows="2"
             onMouseLeave={(e) => handleNote(e.target.value)}
-            defaultValue={getCurrentNoteById}
-            class="block w-full rounded-lg border border-gray-300 bg-gray-100 p-2.5 text-sm text-gray-800 focus:border-red-500 focus:ring-red-500 "
+            defaultValue={currentNotes}
+            disabled={soldOut}
+            className="block w-full rounded-lg border border-gray-300 bg-gray-100 p-2.5 text-sm text-gray-800 focus:border-red-500 focus:ring-red-500 "
             placeholder="Write your note here..."
           />
         </div>
 
         <div className="mt-auto flex items-center justify-between">
           {!soldOut ? (
-            <p className="text-2xl">{formatCurrency(unitPrice)}</p>
+            <p className="text-2xl font-semibold">
+              {formatCurrency(unitPrice)}
+            </p>
           ) : (
             <p className="text-lg font-medium uppercase text-stone-500">
               Sold out

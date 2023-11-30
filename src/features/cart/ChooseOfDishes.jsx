@@ -1,4 +1,11 @@
-function ChoiseOfDhises({ num, menuId, onChange, children, currentDhises }) {
+function ChoiseOfDhises({
+  num,
+  menuId,
+  onChange,
+  children,
+  currentDhises,
+  disabled,
+}) {
   return (
     <div className="flex items-center">
       <input
@@ -8,6 +15,7 @@ function ChoiseOfDhises({ num, menuId, onChange, children, currentDhises }) {
         defaultChecked={currentDhises === children}
         onChange={() => onChange(num)}
         className="peer hidden"
+        disabled={disabled}
       />
       <label
         htmlFor={menuId + num}
