@@ -73,6 +73,18 @@ function FeaturedMenu() {
             <span>Squid</span>
           </div>
         </Link>
+        <Link className="text-center" to="menu/drink">
+          <div className="overflow-hidden rounded-lg [&>img]:hover:scale-110 [&>img]:hover:opacity-70">
+            <img
+              src="https://yhwislyjvtigzmagbzmn.supabase.co/storage/v1/object/public/menu/Coconut.jpg"
+              alt="Coconut"
+              className="block w-full rounded-lg opacity-100 transition-all duration-500"
+            />
+          </div>
+          <div className="text-stone-70  bg-stone-50 text-4xl font-semibold uppercase">
+            <span>Drinks</span>
+          </div>
+        </Link>
       </div>
     </div>
   );

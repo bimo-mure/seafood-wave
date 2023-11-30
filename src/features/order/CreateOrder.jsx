@@ -14,13 +14,6 @@ const isValidPhone = (str) =>
   );
 
 function CreateOrder() {
-  const {
-    username,
-    status: addressStatus,
-    position,
-  } = useSelector((state) => state.user);
-  const isLoadingAddress = addressStatus === 'loading';
-
   const navigation = useNavigation();
   const isSubmitting = navigation.state === 'submitting';
 
@@ -40,13 +33,7 @@ function CreateOrder() {
       <Form method="POST">
         <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
           <label className="sm:basis-40">First Name</label>
-          <input
-            className="input grow"
-            type="text"
-            name="customer"
-            defaultValue={username}
-            required
-          />
+          <input className="input grow" type="text" name="customer" required />
         </div>
 
         <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
@@ -63,17 +50,8 @@ function CreateOrder() {
 
         <div>
           <input type="hidden" name="cart" value={JSON.stringify(cart)} />
-          <input
-            type="hidden"
-            name="position"
-            value={
-              position.longitude && position.latitude
-                ? `${position.latitude},${position.longitude}`
-                : ''
-            }
-          />
 
-          <Button disabled={isSubmitting || isLoadingAddress} type="primary">
+          <Button type="primary">
             {isSubmitting
               ? 'Placing order....'
               : `Order now from ${formatCurrency(totalPrice)}`}
