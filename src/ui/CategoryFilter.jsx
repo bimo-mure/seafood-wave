@@ -1,4 +1,4 @@
-function CategoryFilter({ num, children, onChange }) {
+function CategoryFilter({ num, children, onChange, currentMenu }) {
   return (
     <div>
       <div className="flex items-center ps-3">
@@ -8,6 +8,7 @@ function CategoryFilter({ num, children, onChange }) {
           name="category menu"
           onChange={() => onChange(num)}
           className="peer hidden"
+          defaultChecked={currentMenu === children}
         />
         <label
           htmlFor={num}

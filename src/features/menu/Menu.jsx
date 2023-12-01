@@ -1,12 +1,14 @@
-import { useLoaderData, useNavigate } from 'react-router-dom';
+import { useLoaderData, useNavigate, useParams } from 'react-router-dom';
 import { getMenu, getMenuByCategory } from '../../services/apiRestaurant';
 import MenuItem from './MenuItem';
 import CategoryFilter from '../../ui/CategoryFilter';
 
 function Menu() {
+  let { category } = useParams();
   let navigate = useNavigate();
   const menu = useLoaderData();
-  const category = [
+
+  const categories = [
     'all menu',
     'crab',
     'fish',
@@ -17,19 +19,24 @@ function Menu() {
   ];
 
   function handleChangeOption(e) {
-    // eslint-disable-next-line no-lone-blocks
+    //eslint-disable-next-line no-lone-blocks
     {
-      category[e] === 'all menu'
+      categories[e] === 'all menu'
         ? navigate(`/menu`)
-        : navigate(`/menu/${category[e]}`);
+        : navigate(`/menu/${categories[e]}`);
     }
   }
 
   return (
     <>
       <div className="flex w-full flex-wrap items-center justify-center gap-2 bg-stone-50 text-sm font-medium text-stone-700 sm:flex">
-        {category.map((item, index) => (
-          <CategoryFilter num={index} onChange={handleChangeOption} key={index}>
+        {categories.map((item, index) => (
+          <CategoryFilter
+            num={index}
+            onChange={handleChangeOption}
+            key={index}
+            currentMenu={!category ? 'all menu' : category}
+          >
             {item}
           </CategoryFilter>
         ))}

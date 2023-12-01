@@ -5,7 +5,7 @@ import { getTotalCartQuantity } from '../features/cart/cartSlice';
 function Cart() {
   const totalCartQuantity = useSelector(getTotalCartQuantity);
   return (
-    <div className="relative">
+    <div className="relative items-center rounded-xl p-2 hover:bg-stone-200">
       <Link to="/cart">
         <svg
           fill="none"
