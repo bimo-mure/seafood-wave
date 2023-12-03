@@ -12,7 +12,7 @@ function FeaturedMenu() {
         </h1>
       </div>
 
-      <div className="mb-11 grid grid-cols-3 content-center gap-8">
+      <div className="mb-11 grid grid-cols-3 content-center gap-8 px-5">
         <Link className="text-center" to="menu/crab">
           <div className="overflow-hidden rounded-lg [&>img]:hover:scale-110 [&>img]:hover:opacity-70">
             <img
