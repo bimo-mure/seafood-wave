@@ -1,6 +1,7 @@
 import { Form, redirect, useActionData, useNavigation } from 'react-router-dom';
 import { createOrder } from '../../services/apiRestaurant';
 import Button from '../../ui/Button';
+import Loader from '..//../ui/Loader';
 import EmptyCart from '../cart/EmptyCart';
 import { useSelector } from 'react-redux';
 import { clearCart, getCart, getTotalCartPrice } from '../cart/cartSlice';
@@ -16,6 +17,7 @@ const isValidPhone = (str) =>
 function CreateOrder() {
   const navigation = useNavigation();
   const isSubmitting = navigation.state === 'submitting';
+  const isLoading = navigation.state === 'loading';
 
   const formErrors = useActionData();
 
@@ -24,6 +26,7 @@ function CreateOrder() {
   const totalPrice = totalCartPrice;
 
   if (!cart.length) return <EmptyCart />;
+  if (isLoading) return <Loader />;
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-6">

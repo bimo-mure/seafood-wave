@@ -8,7 +8,7 @@ function Cart() {
     <div className="relative rounded-xl p-2 hover:bg-stone-200">
       <Link to="/cart">
         <svg
-          className="h-8 w-8"
+          className="h-6 w-6"
           fill="none"
           stroke="currentColor"
           stroke-linecap="round"
@@ -22,7 +22,7 @@ function Cart() {
           <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
         </svg>
         {totalCartQuantity > 0 ? (
-          <div className="absolute left-8 top-1 w-4 rounded-full bg-red-500 text-center text-xs text-stone-50">
+          <div className="absolute left-6 top-1 w-4 rounded-full bg-red-500 text-center text-xs text-stone-50">
             {totalCartQuantity}
           </div>
         ) : (

@@ -1,8 +1,7 @@
-// Test ID: IIDSAT
 import { useFetcher, useLoaderData } from 'react-router-dom';
-
+import Loader from '..//../ui/Loader';
 import OrderItem from './OrderItem';
-
+import { useNavigation } from 'react-router-dom';
 import { getOrder } from '../../services/apiRestaurant';
 import {
   calcMinutesLeft,
@@ -14,6 +13,8 @@ import { useEffect } from 'react';
 function Order() {
   const order = useLoaderData();
   const fetcher = useFetcher();
+  const navigation = useNavigation();
+  const isLoading = navigation.state === 'loading';
 
   useEffect(
     function () {
@@ -26,6 +27,8 @@ function Order() {
   const { orderId, status, orderPrice, estimatedDelivery, cart } = order;
 
   const deliveryIn = calcMinutesLeft(estimatedDelivery);
+
+  if (isLoading) return <Loader />;
 
   return (
     <div className="mx-auto max-w-3xl space-y-8 px-4 py-6">

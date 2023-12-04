@@ -12,9 +12,13 @@ import {
 } from '../cart/cartSlice';
 import ChooseOfDishes from '../cart/ChooseOfDishes';
 import { useEffect, useRef, useState } from 'react';
+import { useNavigation } from 'react-router-dom';
+import MenuItemLoader from './MenuItemLoader';
 
 function MenuItem({ menu }) {
   const dispatch = useDispatch();
+  const navigation = useNavigation();
+  const isLoading = navigation.state === 'loading';
 
   const { menuId, name, unitPrice, chooseOfDishes, soldOut, imageUrl } = menu;
 
@@ -65,73 +69,81 @@ function MenuItem({ menu }) {
   }
 
   return (
-    <li className="flex gap-4 py-2">
-      <img
-        src={imageUrl}
-        alt={name}
-        className={`h-64 rounded-lg ${soldOut ? 'opacity-70 grayscale' : ''}`}
-      />
-      <div className="flex grow flex-col pt-0.5">
-        <div className="grid grid-cols-2"></div>
-        <p className="mb-3 text-4xl font-medium">{name}</p>
-        <p className="mb-2 text-lg font-medium">Choose of Dhises:</p>
-
-        <div className="flex flex-wrap gap-2">
-          {chooseOfDishes.map((item, index) => (
-            <ChooseOfDishes
-              num={index}
-              menuId={menuId}
-              onChange={handleChangeOption}
-              key={index + menuId}
-              currentDhises={currentDhises}
-              disabled={soldOut}
-            >
-              {item}
-            </ChooseOfDishes>
-          ))}
-        </div>
-
-        <div className="my-2">
-          <textarea
-            id="message"
-            rows="2"
-            onMouseLeave={(e) => handleNote(e.target.value)}
-            defaultValue={currentNotes}
-            disabled={soldOut}
-            className="block w-full rounded-lg border border-stone-300 bg-stone-100 p-2.5 text-sm text-stone-700 focus:border-red-500 focus:ring-red-500 "
-            placeholder="Write your note here..."
+    <div>
+      {isLoading ? (
+        <MenuItemLoader />
+      ) : (
+        <li className="flex gap-4 py-2">
+          <img
+            src={imageUrl}
+            alt={name}
+            className={`h-64 w-64 rounded-lg ${
+              soldOut ? 'opacity-70 grayscale' : ''
+            }`}
           />
-        </div>
+          <div className="flex grow flex-col pt-0.5">
+            <div className="grid grid-cols-2"></div>
+            <p className="mb-3 text-4xl font-medium">{name}</p>
+            <p className="mb-2 text-lg font-medium">Choose of Dhises:</p>
 
-        <div className="mt-auto flex items-center justify-between">
-          {!soldOut ? (
-            <p className="text-2xl font-semibold">
-              {formatCurrency(unitPrice)}
-            </p>
-          ) : (
-            <p className="text-lg font-medium uppercase text-stone-500">
-              Sold out
-            </p>
-          )}
-
-          {isInCart && (
-            <div className="flex items-center gap-3 sm:gap-8">
-              <UpdateItemQuantity
-                menuId={menuId}
-                currentQuantity={currentQuantity}
-              />
-              <DeleteItem menuId={menuId} />
+            <div className="flex flex-wrap gap-2">
+              {chooseOfDishes.map((item, index) => (
+                <ChooseOfDishes
+                  num={index}
+                  menuId={menuId}
+                  onChange={handleChangeOption}
+                  key={index + menuId}
+                  currentDhises={currentDhises}
+                  disabled={soldOut}
+                >
+                  {item}
+                </ChooseOfDishes>
+              ))}
             </div>
-          )}
 
-          {!soldOut && !isInCart && (
-            <Button type="small" onClick={handleAddToCart}>
-              Add to cart
-            </Button>
-          )}
-        </div>
-      </div>
-    </li>
+            <div className="my-2">
+              <textarea
+                id="message"
+                rows="2"
+                onMouseLeave={(e) => handleNote(e.target.value)}
+                defaultValue={currentNotes}
+                disabled={soldOut}
+                className="block w-full rounded-lg border border-stone-300 bg-stone-100 p-2.5 text-sm text-stone-700 focus:border-red-500 focus:ring-red-500 "
+                placeholder="Write your note here..."
+              />
+            </div>
+
+            <div className="mt-auto flex items-center justify-between">
+              {!soldOut ? (
+                <p className="text-2xl font-semibold">
+                  {formatCurrency(unitPrice)}
+                </p>
+              ) : (
+                <p className="text-lg font-medium uppercase text-stone-500">
+                  Sold out
+                </p>
+              )}
+
+              {isInCart && (
+                <div className="flex items-center gap-3 sm:gap-8">
+                  <UpdateItemQuantity
+                    menuId={menuId}
+                    currentQuantity={currentQuantity}
+                  />
+                  <DeleteItem menuId={menuId} />
+                </div>
+              )}
+
+              {!soldOut && !isInCart && (
+                <Button type="small" onClick={handleAddToCart}>
+                  Add to cart
+                </Button>
+              )}
+            </div>
+          </div>
+        </li>
+      )}
+    </div>
   );
 }
 

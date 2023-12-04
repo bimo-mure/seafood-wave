@@ -1,4 +1,6 @@
 import LinkButton from '../../ui/LinkButton';
+import Loader from '..//../ui/Loader';
+import { useNavigation } from 'react-router-dom';
 import Button from '../../ui/Button';
 import CartItem from './CartItem';
 import EmptyCart from './EmptyCart';
@@ -8,8 +10,12 @@ import { clearCart, getCart } from './cartSlice';
 function Cart() {
   const cart = useSelector(getCart);
   const dispatch = useDispatch();
+  const navigation = useNavigation();
+  const isLoading = navigation.state === 'loading';
 
   if (!cart.length) return <EmptyCart />;
+
+  if (isLoading) return <Loader />;
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-3">
