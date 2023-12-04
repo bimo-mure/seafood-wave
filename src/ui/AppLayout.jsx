@@ -1,3 +1,4 @@
+import Footer from './Footer';
 import Header from './Header';
 import { Outlet } from 'react-router-dom';
 
@@ -7,10 +8,12 @@ function AppLayout() {
       <Header />
 
       <div>
-        <main className="bg-stone-50">
+        <main className="bg-stone-50 pt-[5rem]">
           <Outlet />
         </main>
       </div>
+
+      <Footer />
     </div>
   );
 }

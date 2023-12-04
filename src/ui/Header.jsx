@@ -4,20 +4,22 @@ import Cart from '../features/cart/HeaderCart';
 
 function Header() {
   return (
-    <header className="flex items-center justify-between px-4 py-3 uppercase sm:px-6">
-      <Link to="/" className="tracking-widest">
-        <img
-          src="/logo.png"
-          alt="seafood wave logo"
-          className=" w-1/3 lg:w-1/4"
-        />
-      </Link>
+    <div className="fixed bottom-0 top-0 z-[999] h-[5rem] w-full bg-stone-50">
+      <header className="flex items-center justify-between px-4 py-3 uppercase sm:px-6">
+        <Link to="/" className="tracking-widest">
+          <img
+            src="/logo.png"
+            alt="seafood wave logo"
+            className=" w-1/3 lg:w-1/4"
+          />
+        </Link>
 
-      <div className="flex flex-row items-center gap-4">
-        <SearchOrder />
-        <Cart />
-      </div>
-    </header>
+        <div className="flex flex-row items-center gap-4">
+          <SearchOrder />
+          <Cart />
+        </div>
+      </header>
+    </div>
   );
 }
 
