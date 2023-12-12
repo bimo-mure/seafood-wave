@@ -5,10 +5,10 @@ import { getTotalCartQuantity } from './cartSlice';
 function Cart() {
   const totalCartQuantity = useSelector(getTotalCartQuantity);
   return (
-    <div className="relative rounded-xl p-2 hover:bg-stone-200">
+    <div className="relative rounded-lg p-1 hover:bg-stone-200 md:rounded-xl md:p-2">
       <Link to="/cart">
         <svg
-          className="h-6 w-6"
+          className="h-5 w-5 md:h-6 md:w-6"
           fill="none"
           stroke="currentColor"
           stroke-linecap="round"
@@ -22,7 +22,7 @@ function Cart() {
           <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
         </svg>
         {totalCartQuantity > 0 ? (
-          <div className="absolute left-6 top-1 w-4 rounded-full bg-red-500 text-center text-xs text-stone-50">
+          <div className="absolute -top-0.5 left-4 h-4 w-4 rounded-full bg-red-500 text-center text-xs text-stone-50 md:left-6 md:top-1">
             {totalCartQuantity}
           </div>
         ) : (
