@@ -59,7 +59,6 @@ function MenuItemDetail() {
 
   function handleChangeOption(e) {
     setSelectedOption(e);
-    !isInCart && handleAddToCart();
   }
 
   function handleNote(e) {
@@ -116,15 +115,21 @@ function MenuItemDetail() {
 
       <div className="mt-auto flex items-center justify-end py-4">
         {isInCart && (
-          <div className="flex items-center gap-3 sm:gap-8">
+          <div className="flex items-center gap-2 sm:gap-5">
             <UpdateItemQuantity
               menuId={menuId}
               currentQuantity={currentQuantity}
             />
             <Button type="small" to="/menu">
-              Add to cart
+              Continue
             </Button>
           </div>
+        )}
+
+        {!soldOut && !isInCart && (
+          <Button type="small" onClick={handleAddToCart}>
+            Add to cart
+          </Button>
         )}
       </div>
     </div>
