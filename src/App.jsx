@@ -12,8 +12,10 @@ import CreateOrder, {
 } from './features/order/CreateOrder';
 import Order, { loader as orderLoader } from './features/order/Order';
 import { action as updateOrderAction } from './features/order/UpdateOrder';
-
 import AppLayout from './ui/AppLayout';
+import MenuItemDetail, {
+  loader as loaderMenuDetail,
+} from './features/menu/MenuItemDetail';
 
 const router = createBrowserRouter([
   {
@@ -35,6 +37,12 @@ const router = createBrowserRouter([
         path: '/menu/:category',
         element: <Menu />,
         loader: menuLoaderCategory,
+        errorElement: <Error />,
+      },
+      {
+        path: '/menu/detail/:menuId',
+        element: <MenuItemDetail />,
+        loader: loaderMenuDetail,
         errorElement: <Error />,
       },
       { path: '/cart', element: <Cart /> },

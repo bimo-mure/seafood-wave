@@ -32,7 +32,6 @@ const cartSlice = createSlice({
       const item = state.cart.find((item) => item.menuId === action.payload.id);
       item.chooseOfDishes = action.payload.chooseOfDishes;
       item.note = action.payload.note;
-      console.log(action.payload);
     },
     clearCart(state) {
       state.cart = [];

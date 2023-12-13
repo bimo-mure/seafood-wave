@@ -4,7 +4,7 @@ import { Categories } from './ItemLink';
 function FeaturedMenu() {
   return (
     <div className="mx-auto max-w-7xl items-center justify-center pb-12">
-      <div className="p-10">
+      <div className="p-5">
         <h2 className="mb-2 text-xs font-semibold uppercase text-red-600 md:mb-4 md:text-xl">
           Seafood Menu
         </h2>

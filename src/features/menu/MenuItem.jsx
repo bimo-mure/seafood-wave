@@ -1,8 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '../../ui/Button';
-import DeleteItem from '../cart/DeleteItem';
 import UpdateItemQuantity from '../cart/UpdateItemQuantity';
 import { formatCurrency } from '../../utils/helpers';
+import DeleteItem from '../cart/DeleteItem';
+import Dishes from './Dishes';
+import { useEffect, useRef, useState } from 'react';
+import { useNavigation } from 'react-router-dom';
+import MenuItemLoader from './MenuItemLoader';
 import {
   addItem,
   getCurrentMenuById,
@@ -10,18 +14,12 @@ import {
   changeChooseOfDishes,
   getCurrentNoteById,
 } from '../cart/cartSlice';
-import ChooseOfDishes from '../cart/ChooseOfDishes';
-import { useEffect, useRef, useState } from 'react';
-import { useNavigation } from 'react-router-dom';
-import MenuItemLoader from './MenuItemLoader';
 
 function MenuItem({ menu }) {
+  const { menuId, name, unitPrice, chooseOfDishes, soldOut, imageUrl } = menu;
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const isLoading = navigation.state === 'loading';
-
-  const { menuId, name, unitPrice, chooseOfDishes, soldOut, imageUrl } = menu;
-
   const currentDhises = useSelector(getCurrentMenuById(menuId));
   const currentNotes = useSelector(getCurrentNoteById(menuId));
   const currentQuantity = useSelector(getCurrentQuantityById(menuId));
@@ -77,18 +75,20 @@ function MenuItem({ menu }) {
           <img
             src={imageUrl}
             alt={name}
-            className={`h-64 w-64 rounded-lg ${
+            className={`h-32 w-32 rounded-lg md:h-64 md:w-64 ${
               soldOut ? 'opacity-70 grayscale' : ''
             }`}
           />
           <div className="flex grow flex-col pt-0.5">
             <div className="grid grid-cols-2"></div>
-            <p className="mb-3 text-4xl font-medium">{name}</p>
-            <p className="mb-2 text-lg font-medium">Choose of Dhises:</p>
+            <p className="text-xl font-medium md:mb-3 md:text-4xl">{name}</p>
+            <p className="sr-only mb-2 text-sm font-medium md:not-sr-only md:text-lg">
+              Choose of Dhises:
+            </p>
 
-            <div className="flex flex-wrap gap-2">
+            <div className="sr-only flex flex-wrap gap-2 md:not-sr-only md:py-2">
               {chooseOfDishes.map((item, index) => (
-                <ChooseOfDishes
+                <Dishes
                   num={index}
                   menuId={menuId}
                   onChange={handleChangeOption}
@@ -97,11 +97,11 @@ function MenuItem({ menu }) {
                   disabled={soldOut}
                 >
                   {item}
-                </ChooseOfDishes>
+                </Dishes>
               ))}
             </div>
 
-            <div className="my-2">
+            <div className="sr-only md:not-sr-only md:my-2">
               <textarea
                 id="message"
                 rows="2"
@@ -115,29 +115,45 @@ function MenuItem({ menu }) {
 
             <div className="mt-auto flex items-center justify-between">
               {!soldOut ? (
-                <p className="text-2xl font-semibold">
+                <p className="text-md font-semibold md:text-2xl">
                   {formatCurrency(unitPrice)}
                 </p>
               ) : (
-                <p className="text-lg font-medium uppercase text-stone-500">
+                <p className="text-md font-medium uppercase text-red-700 md:text-lg">
                   Sold out
                 </p>
               )}
 
               {isInCart && (
-                <div className="flex items-center gap-3 sm:gap-8">
-                  <UpdateItemQuantity
-                    menuId={menuId}
-                    currentQuantity={currentQuantity}
-                  />
-                  <DeleteItem menuId={menuId} />
+                <div>
+                  <div className="sr-only flex items-center gap-3 sm:gap-8 md:not-sr-only">
+                    <UpdateItemQuantity
+                      menuId={menuId}
+                      currentQuantity={currentQuantity}
+                    />
+                    <DeleteItem menuId={menuId} />
+                  </div>
+                  <div className="not-sr-only md:sr-only">
+                    <Button type="small" to={`/menu/detail/${menuId}`}>
+                      {`${currentQuantity} item`}
+                    </Button>
+                  </div>
                 </div>
               )}
 
               {!soldOut && !isInCart && (
-                <Button type="small" onClick={handleAddToCart}>
-                  Add to cart
-                </Button>
+                <div>
+                  <div className="sr-only md:not-sr-only">
+                    <Button type="small" onClick={handleAddToCart}>
+                      Add to cart
+                    </Button>
+                  </div>
+                  <div className="not-sr-only md:sr-only">
+                    <Button type="small" to={`/menu/detail/${menuId}`}>
+                      Add to cart
+                    </Button>
+                  </div>
+                </div>
               )}
             </div>
           </div>

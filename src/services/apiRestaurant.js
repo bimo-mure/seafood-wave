@@ -38,6 +38,25 @@ export async function getMenuByCategory(category) {
   }
 }
 
+export async function getMenuById(menuId) {
+  try {
+    const res = await fetch(`${API_URL}/menu/${menuId}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!res.ok) throw Error();
+
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.log(err.message);
+    throw Error('Failed getting menu detail');
+  }
+}
+
 export async function getOrder(id) {
   const res = await fetch(`${API_URL}/order/${id}`);
   if (!res.ok) throw Error(`Couldn't find order #${id}`);

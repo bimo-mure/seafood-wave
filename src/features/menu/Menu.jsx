@@ -29,7 +29,7 @@ function Menu() {
 
   return (
     <>
-      <div className="flex w-full flex-wrap items-center justify-center gap-2 bg-stone-50 text-sm font-medium text-stone-700 sm:flex">
+      <div className="flex w-full items-center justify-center gap-2 bg-stone-50 text-xs font-medium text-stone-700 md:text-sm lg:text-lg">
         {categories.map((item, index) => (
           <CategoryFilter
             num={index}
