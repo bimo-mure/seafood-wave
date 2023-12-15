@@ -13,7 +13,8 @@ import {
   getCurrentNoteById,
 } from '../cart/cartSlice';
 import { useEffect, useRef, useState } from 'react';
-import DhisesList from './DhisesList';
+import DishesRadioList from '../../ui/DishesRadioList';
+import Note from '../../ui/Note';
 
 function MenuItemDetail() {
   const menuDetail = useLoaderData();
@@ -88,7 +89,7 @@ function MenuItemDetail() {
 
       <div className="w-full rounded-t-lg border-b border-gray-200">
         {chooseOfDishes.map((item, index) => (
-          <DhisesList
+          <DishesRadioList
             num={index}
             menuId={menuId}
             onChange={handleChangeOption}
@@ -97,21 +98,15 @@ function MenuItemDetail() {
             disabled={soldOut}
           >
             {item}
-          </DhisesList>
+          </DishesRadioList>
         ))}
       </div>
 
-      <div className="my-2">
-        <textarea
-          id="message"
-          rows="2"
-          onMouseLeave={(e) => handleNote(e.target.value)}
-          defaultValue={currentNotes}
-          disabled={soldOut}
-          className="block w-full rounded-lg border border-stone-300 bg-stone-100 p-2.5 text-sm text-stone-700 focus:border-red-500 focus:ring-red-500 "
-          placeholder="Write your note here..."
-        />
-      </div>
+      <Note
+        handleNote={handleNote}
+        currentNotes={currentNotes}
+        soldOut={soldOut}
+      />
 
       <div className="mt-auto flex items-center justify-end py-4">
         {isInCart && (

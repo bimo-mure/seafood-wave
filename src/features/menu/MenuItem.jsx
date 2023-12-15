@@ -3,7 +3,6 @@ import Button from '../../ui/Button';
 import UpdateItemQuantity from '../cart/UpdateItemQuantity';
 import { formatCurrency } from '../../utils/helpers';
 import DeleteItem from '../cart/DeleteItem';
-import Dishes from './Dishes';
 import { useEffect, useRef, useState } from 'react';
 import { useNavigation } from 'react-router-dom';
 import MenuItemLoader from './MenuItemLoader';
@@ -14,6 +13,7 @@ import {
   changeChooseOfDishes,
   getCurrentNoteById,
 } from '../cart/cartSlice';
+import ListDishes from '../../ui/ListDishes';
 
 function MenuItem({ menu }) {
   const { menuId, name, unitPrice, chooseOfDishes, soldOut, imageUrl } = menu;
@@ -83,23 +83,36 @@ function MenuItem({ menu }) {
             <div className="grid grid-cols-2"></div>
             <p className="text-xl font-medium md:mb-3 md:text-4xl">{name}</p>
             <p className="sr-only mb-2 text-sm font-medium md:not-sr-only md:text-lg">
-              Choose of Dhises:
+              Choose of Dishes:
             </p>
 
-            <div className="sr-only flex flex-wrap gap-2 md:not-sr-only md:py-2">
-              {chooseOfDishes.map((item, index) => (
-                <Dishes
-                  num={index}
-                  menuId={menuId}
-                  onChange={handleChangeOption}
-                  key={index + menuId}
-                  currentDhises={currentDhises}
-                  disabled={soldOut}
-                >
-                  {item}
-                </Dishes>
-              ))}
+            <div className="not-sr-only flex flex-row flex-wrap text-xs text-stone-500 md:sr-only">
+              <p className="text-xs font-medium">Choose of Dishes: &nbsp;</p>
+              {(() => {
+                const result = [];
+
+                for (let i = 0; i < chooseOfDishes.length; i++) {
+                  if (i < 4) {
+                    result.push(
+                      <p key={i}>{`${chooseOfDishes[i]},`} &nbsp;</p>
+                    );
+                  } else {
+                    result.push(<p key={i}>...</p>);
+                    break;
+                  }
+                }
+
+                return result;
+              })()}
             </div>
+
+            <ListDishes
+              chooseOfDishes={chooseOfDishes}
+              menuId={menuId}
+              handleChangeOption={handleChangeOption}
+              currentDhises={currentDhises}
+              soldOut={soldOut}
+            />
 
             <div className="sr-only md:not-sr-only md:my-2">
               <textarea

@@ -19,12 +19,9 @@ function Menu() {
   ];
 
   function handleChangeOption(e) {
-    //eslint-disable-next-line no-lone-blocks
-    {
-      categories[e] === 'all menu'
-        ? navigate(`/menu`)
-        : navigate(`/menu/${categories[e]}`);
-    }
+    categories[e] === 'all menu'
+      ? navigate(`/menu`)
+      : navigate(`/menu/${categories[e]}`);
   }
 
   return (

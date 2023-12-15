@@ -1,7 +1,7 @@
 function MenuItemLoader() {
   return (
     <div role="status" className="flex animate-pulse gap-4 py-2 ">
-      <div className="flex h-64 w-64 items-center justify-center rounded-lg bg-gray-300">
+      <div className="flex h-32 w-32 items-center justify-center rounded-lg bg-gray-300 md:h-64 md:w-64">
         <svg
           className="h-10 w-10 text-gray-200 "
           aria-hidden="true"
@@ -13,13 +13,13 @@ function MenuItemLoader() {
         </svg>
       </div>
       <div className="flex grow flex-col pt-0.5">
-        <div className="mb-6 h-6 w-48 rounded-lg bg-gray-200 "></div>
-        <div className="mb-2 h-4 max-w-[180px] rounded-lg bg-gray-200 "></div>
-        <div className="mb-2 h-4 max-w-[440px] rounded-lg bg-gray-200 "></div>
+        <div className="mb-2 h-6 w-48 rounded-lg bg-gray-200 md:mb-6 "></div>
+        <div className="sr-only mb-2 h-4 max-w-[180px] rounded-lg bg-gray-200 md:not-sr-only"></div>
+        <div className="sr-only mb-2 h-4 max-w-[440px] rounded-lg bg-gray-200 md:not-sr-only"></div>
         <div className="mb-2.5 h-16  rounded-lg bg-gray-200 "></div>
         <div className="mt-auto flex flex-row justify-between">
-          <div className="mb-2.5 h-6 w-full max-w-[180px] rounded-lg bg-gray-200"></div>
-          <div className="h-6 w-full max-w-[100px] rounded-lg bg-gray-200 "></div>
+          <div className="mb-2.5 h-5 w-full max-w-[90px] rounded-lg bg-gray-200 md:h-6 md:max-w-[180px]"></div>
+          <div className="h-5 w-full max-w-[70px] rounded-lg bg-gray-200 md:h-6 md:max-w-[100px]"></div>
         </div>
       </div>
       <span className="sr-only">Loading...</span>
