@@ -106,6 +106,7 @@ function MenuItemDetail() {
         handleNote={handleNote}
         currentNotes={currentNotes}
         soldOut={soldOut}
+        menuId={menuId}
       />
 
       <div className="mt-auto flex items-center justify-end py-4">

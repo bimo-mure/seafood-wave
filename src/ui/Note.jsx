@@ -1,8 +1,8 @@
-function Note({ currentNotes, handleNote, soldOut }) {
+function Note({ currentNotes, handleNote, soldOut, MenuId }) {
   return (
     <div className="my-2">
       <textarea
-        id="message"
+        id={MenuId}
         rows="2"
         onMouseLeave={(e) => handleNote(e.target.value)}
         defaultValue={currentNotes}

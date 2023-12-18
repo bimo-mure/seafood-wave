@@ -75,6 +75,7 @@ function MenuItem({ menu }) {
           <img
             src={imageUrl}
             alt={name}
+            loading="lazy"
             className={`h-32 w-32 rounded-lg md:h-64 md:w-64 ${
               soldOut ? 'opacity-70 grayscale' : ''
             }`}
@@ -116,7 +117,7 @@ function MenuItem({ menu }) {
 
             <div className="sr-only md:not-sr-only md:my-2">
               <textarea
-                id="message"
+                id={menuId}
                 rows="2"
                 onMouseLeave={(e) => handleNote(e.target.value)}
                 defaultValue={currentNotes}

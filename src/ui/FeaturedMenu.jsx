@@ -15,11 +15,12 @@ function FeaturedMenu() {
 
       <div className=" grid grid-cols-3 content-center gap-8 px-5">
         {Categories.map((category) => (
-          <Link className="text-center" to={category.to}>
+          <Link className="text-center" to={category.to} rel="preload">
             <div className="mb-1 overflow-hidden rounded-lg md:mb-4 [&>img]:hover:scale-110 [&>img]:hover:opacity-70">
               <img
                 src={category.link}
                 alt={category.name}
+                loading="lazy"
                 className="block w-full rounded-lg opacity-100 transition-all duration-500"
               />
             </div>
