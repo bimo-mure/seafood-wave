@@ -1,6 +1,6 @@
 # Seafood-Wave 🦀
 
-Welcome to the Seafood-Wave App! This front-end application is designed for demonstration purposes, allowing users to explore the functionality of a simplified restaurant ordering system without the need for a login.
+Front-end application is designed for demonstration purposes, allowing users to explore the functionality of a simplified restaurant ordering system without the need for a login.
 
 ## Features ✨
 
@@ -10,8 +10,6 @@ Welcome to the Seafood-Wave App! This front-end application is designed for demo
 
 3. **Food Cart:** Add your dishes to the cart and review your selection before placing an order.
 
-4. **Geocoding Integration:** The app integrates with geocoding services to enhance the user experience. Location-based features ensure accurate delivery and provide users with relevant information based on their geographical context.
-
 ## Getting Started 🌱
 
 Follow these steps to set up the seafood-wave Demo App locally:
@@ -20,6 +18,24 @@ Follow these steps to set up the seafood-wave Demo App locally:
 # Clone the repository
 git clone https://github.com/bimo-mure/seafood-wave.git
 cd seafood-wave
+
+# Install Tailwind CSS
+npm install -D tailwindcss
+npx tailwindcss init
+
+# Add the paths to all of your template files in your tailwind.config.js file.
+module.exports = {
+  content: ["./src/**/*.{html,js}"],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+
+# Add the @tailwind directives for each of Tailwind’s layers to your main CSS file.
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 # Install dependencies
 npm install
