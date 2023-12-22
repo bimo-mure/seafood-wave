@@ -1,4 +1,4 @@
-const API_URL = 'http://3.25.93.175:8080/api';
+const API_URL = 'https://seafood-wave-api.onrender.com/api';
 
 export async function getMenu() {
   try {
