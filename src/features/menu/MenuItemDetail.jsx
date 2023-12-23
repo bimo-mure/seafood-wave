@@ -18,7 +18,8 @@ import Note from '../../ui/Note';
 
 function MenuItemDetail() {
   const menuDetail = useLoaderData();
-  const { menuId, name, unitPrice, chooseOfDishes, soldOut } = menuDetail;
+  const { menuId, name, unitPrice, chooseOfDishes, soldOut, imageUrl } =
+    menuDetail;
   const dispatch = useDispatch();
   const currentDhises = useSelector(getCurrentMenuById(menuId));
   const currentNotes = useSelector(getCurrentNoteById(menuId));
@@ -67,12 +68,22 @@ function MenuItemDetail() {
   }
 
   return (
-    <div className="mx-auto h-screen max-w-3xl px-4 py-3">
+    <div className="mx-auto max-w-3xl px-4 py-3">
       <LinkButton to="/menu">&larr; Back to menu</LinkButton>
 
       <div className="flex grow flex-col pt-4">
-        <div className="mb-3 flex flex-row justify-between">
-          <p className="text-2xl font-medium">{name}</p>
+        <div>
+          <img
+            src={imageUrl}
+            alt={name}
+            loading="lazy"
+            className={`w-full rounded-lg md:h-64 md:w-64 ${
+              soldOut ? 'opacity-70 grayscale' : ''
+            }`}
+          />
+        </div>
+        <div className="mb-3 flex flex-row items-center justify-between py-4">
+          <p className=" text-2xl font-medium">{name}</p>
           {!soldOut ? (
             <p className="text-lg font-semibold">{formatCurrency(unitPrice)}</p>
           ) : (
