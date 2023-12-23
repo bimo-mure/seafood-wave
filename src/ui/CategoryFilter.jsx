@@ -12,7 +12,7 @@ function CategoryFilter({ num, children, onChange, currentMenu }) {
         />
         <label
           htmlFor={num}
-          className="inline-flex cursor-pointer rounded-t-md px-1 font-normal uppercase text-stone-600 hover:bg-stone-100 hover:text-stone-600 peer-checked:border-t peer-checked:border-stone-400  peer-checked:bg-stone-100 peer-checked:font-semibold peer-checked:text-red-500"
+          className="inline-flex cursor-pointer rounded-t-md px-1 text-[0.6rem] font-normal uppercase text-stone-600 hover:bg-stone-100 hover:text-stone-600 peer-checked:border-t peer-checked:border-stone-400  peer-checked:bg-stone-100 peer-checked:font-semibold peer-checked:text-red-500 sm:text-[1rem]"
         >
           {children}
         </label>

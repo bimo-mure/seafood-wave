@@ -82,13 +82,15 @@ function MenuItem({ menu }) {
           />
           <div className="flex grow flex-col pt-0.5">
             <div className="grid grid-cols-2"></div>
-            <p className="text-xl font-medium md:mb-3 md:text-4xl">{name}</p>
+            <p className="text-lg font-medium md:mb-3 md:text-3xl">{name}</p>
             <p className="sr-only mb-2 text-sm font-medium md:not-sr-only md:text-lg">
               Choose of Dishes:
             </p>
 
-            <div className="not-sr-only flex flex-row flex-wrap text-xs text-stone-500 md:sr-only">
-              <p className="text-xs font-medium">Choose of Dishes: &nbsp;</p>
+            <div className="not-sr-only flex flex-row flex-wrap text-[0.6rem] text-stone-500 md:sr-only">
+              <p className="text-[0.8rem] font-medium">
+                Choose of Dishes: &nbsp;
+              </p>
               {(() => {
                 const result = [];
 
@@ -129,11 +131,11 @@ function MenuItem({ menu }) {
 
             <div className="mt-auto flex items-center justify-between">
               {!soldOut ? (
-                <p className="text-md font-semibold md:text-2xl">
+                <p className="text-sm font-semibold md:text-2xl">
                   {formatCurrency(unitPrice)}
                 </p>
               ) : (
-                <p className="text-md font-medium uppercase text-red-700 md:text-lg">
+                <p className="text-sm font-medium uppercase text-red-700 md:text-lg">
                   Sold out
                 </p>
               )}
@@ -164,7 +166,7 @@ function MenuItem({ menu }) {
                   </div>
                   <div className="not-sr-only md:sr-only">
                     <Button type="small" to={`/menu/detail/${menuId}`}>
-                      Add to cart
+                      Add
                     </Button>
                   </div>
                 </div>
