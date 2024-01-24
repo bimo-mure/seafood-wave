@@ -1,15 +1,8 @@
 import { Link } from 'react-router-dom';
 import SearchOrder from '../features/order/SearchOrder';
 import Cart from '../features/cart/HeaderCart';
-import Alert from './Alert';
-import { useState } from 'react';
 
 function Header() {
-  const [show, setShow] = useState(true);
-
-  function onClickHandleAlert() {
-    setShow(false);
-  }
   return (
     <div className="fixed bottom-0 top-0 z-[999] h-[3.5rem] w-full bg-stone-50 md:h-[5rem]">
       <header className="flex items-center justify-between px-4 py-3 uppercase sm:px-6">
@@ -26,7 +19,6 @@ function Header() {
           <Cart />
         </div>
       </header>
-      {show && <Alert onClose={onClickHandleAlert} />}
     </div>
   );
 }
